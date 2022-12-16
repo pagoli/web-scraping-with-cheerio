@@ -1,6 +1,6 @@
 # Web Scraper tool with NodeJs / Cheerio
 
-##### Disclaimer: This project was built by me for learning purposes and open for modifications in the future.
+Disclaimer: This project was built by me for learning purposes and open for modifications in the future. I used it in this example to get some information from a wikipedia page. You can modify it to your needs. I cannot be hold responsible, should you use this tool on any other website, so please be aware of copyright infringement.
 
 ## Setup
 

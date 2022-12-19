@@ -17,14 +17,14 @@ const sculpturesLink = `/wiki/List_of_most_expensive_sculptures`;
 // let regex_px = /\b([1-9]|[1-9][0-9]|1[01][0-9]|15[0-9])px\b/gm;
 
 //? Defining the method for collecting the data:
-const getAllPaintingsData = async () => {
+const getAllPaintingsData = async (baseURL, paintingsAll) => {
   try {
     const { data } = await axios({
       method: "GET",
       url: baseURL + paintingsAll,
     });
     const $ = await cheerio.load(data);
-    console.log("DATA =>", data);
+    // console.log("DATA =>", data);
     const paintings = [];
 
     $("table > tbody > tr", data).each(function (row) {
@@ -42,25 +42,6 @@ const getAllPaintingsData = async () => {
           .attr("href");
 
         const paintingInfoURL = baseURL + titleLink;
-        // const getPaintingInfo = async () => {
-        //   const { data } = await axios({
-        //     method: "GET",
-        //     url: baseURL + titleLink,
-        //   });
-        //   const $2 = await cheerio.load(data);
-        //   if (!paintingInfoURL.includes("undefined")) {
-        //     const paintingInfoText = [];
-        //     $2(".").each(function (item) {
-        //       if (item != 0) {
-        //         const information = $2(this).find(`.mw-parser.output p`).text();
-        //         paintingInfoText.push(information);
-        //         console.log("INFOS => ", information);
-        //       }
-        //     });
-        //   }
-        // };
-
-        // getPaintingInfo();
 
         const artist = $(this)
           .find(`tr > td:nth-child(5)`)
@@ -136,7 +117,7 @@ const getAllPaintingsData = async () => {
 
     // Create a 'paintingsAllTime.json' file in the root directory with the scraped paintings
     fs.writeFile(
-      "allPaintings_.json",
+      "allPaintings_data.json",
       JSON.stringify(paintings, null, 2),
       (err) => {
         if (err) {
@@ -151,6 +132,6 @@ const getAllPaintingsData = async () => {
   }
 };
 
-getAllPaintingsData();
+getAllPaintingsData(baseURL, paintingsAll);
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}.`));

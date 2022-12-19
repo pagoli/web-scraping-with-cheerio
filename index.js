@@ -9,12 +9,14 @@ const app = express();
 //? Defining the URLs:
 // const url1 = `https://en.wikipedia.org/wiki/List_of_most_expensive_artworks_by_living_artists`
 // const url2 = `https://en.wikipedia.org/wiki/List_of_most_expensive_paintings`
+
+//? I want to scrape data from the english wikipedia page:
 const baseURL = `https://en.wikipedia.org`;
+
+//? The Wikipedia-pages I took the data from:
 const paintingsAll = `/wiki/List_of_most_expensive_paintings`;
 const paintingsLiving = `/wiki/List_of_most_expensive_artworks_by_living_artists`;
 const sculpturesLink = `/wiki/List_of_most_expensive_sculptures`;
-
-// let regex_px = /\b([1-9]|[1-9][0-9]|1[01][0-9]|15[0-9])px\b/gm;
 
 //? Defining the method for collecting the data:
 const getAllPaintingsData = async (baseURL, paintingsAll) => {
